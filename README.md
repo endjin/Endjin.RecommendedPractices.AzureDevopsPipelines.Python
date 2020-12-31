@@ -1,0 +1,1 @@
+# Endjin.RecommendedPractices.AzureDevopsPipelines.Python
