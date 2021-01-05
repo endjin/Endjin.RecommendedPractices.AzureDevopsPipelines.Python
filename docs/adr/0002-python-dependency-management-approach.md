@@ -10,10 +10,10 @@ This ADR concerns a core element of [0001-pipeline-to-publish-python-packages](.
 
 There are two broad approaches for managing package dependencies with Python:
 
-1. Work with low level building blocks : a combination of Python virtual environments and use of pip / requirements.txt file and setup.py file (if you are publishing the code as a package);
+1. Work with low level building blocks: a combination of Python virtual environments and use of pip / requirements.txt file and setup.py file (if you are publishing the code as a package);
 1. Higher order tooling - through use of tools such as tox or pipenv which attempts to combine the low level components above into a single integrated tool chain.
 
-I have used the first option extensively and whilst it works, you can get tied in knots managining dependencies.  Whilst I have not used it in anger, my preference at the moment would be to use pipenv based on a look at the documentation and the fact that it is recommended by the offical Python.org site for dependency management.
+I have used the first option extensively and whilst it works, you can get tied in knots managing dependencies.  Whilst I have not used it in anger, my preference at the moment would be to use pipenv based on a look at the documentation and the fact that it is recommended by the offical Python.org site for dependency management.
 
 My concern is that pipenv may be more difficult to get working on Azure DevOps given that most of the documentation I've seen is based on the first "low level" option above.
 
