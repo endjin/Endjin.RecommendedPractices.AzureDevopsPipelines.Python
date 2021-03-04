@@ -16,25 +16,40 @@ Check the installation by opening a terminal and running the following command:
 
 `python --version`
 
+### Install Git
+
+Download and install Git from [the official Git web site](https://git-scm.com/downloads).
+
+Check the installation of Git by running the following command:
+
+`git --version`
+
+There are some steps you need to take to [get started with Git](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)
+
+The core ones being setting your git user and email address, this is required for pushing changes to a remote repository:
+
+`git config --global user.name "John Doe"`
+`git config --global user.email johndoe@example.com`
+
 ### Pull down repository from GitHub
 
-Clone the template project from GitHub.
+Clone the template project from GitHub.  From a local directory where we you want to host your repos, such as `%HOMEPATH%\repos` run the following command:
+
+`git clone <URL path to the repository>`
 
 ### Set up environment
 
-Use 'pip' (pacakge installer for Python) to upgrade to the latest version of pip:
+Change directory into root of the cloned repo.
 
-`python -m pip install --upgrade pip`
+Use 'pip' (package installer for Python) to upgrade to the latest version of pip and pipenv:
 
-Now install 'pipenv':
-
-`pip install pipenv`
+`python -m pip install --upgrade pip pipenv`
 
 Now lauch 'pipenv' shell - this will auotmatically create virtual environment:
 
 `pipenv shell`
 
-Now install dependencies using the `--dev` extensions so that development packages such as pytest, flake8 and the packaing tools are included.
+Now install dependencies using the `--dev` extensions so that development packages such as pytest, flake8 and the packaing tools are included.  This installs the packages defined in the Pipfile and Pipfile.lock files.
 
 `pipenv install --dev`
 
@@ -43,7 +58,7 @@ The following commands are useful to visualise the packages that are installed a
 `pipenv graph`
 `pipend graph --reverse`
 
-## Installing new packages
+### Installing new packages
 
 For packages required in production use:
 
@@ -62,14 +77,22 @@ The following tools are pre-packaged with this template project:
 Install setuptools which is used to prepare a Python package:
 `pipenv install --dev setuptools`
 
-Install wheel which is used to zip up the package ready for deployment:
-`pipenv install --dev wheel`
-
 Install pipenv-setup which enables the the creation and management of setup.py file that governs how the Python code is packaged using setuptools:
 `pipenv install --dev pipenv-setup`
 
 To ensure the setup.py file is synchronized with the pipfile, issue the following command:
 `pipenv-setup sync`
+
+To create a packaged installation, run the following command:
+`pipenv run python setup.py sdist bdist_wheel`
+
+Install wheel which is used to zip up the package ready for deployment:
+`pipenv install --dev wheel keyring artifacts-keyring`
+
+There are some pre-requisites to the following command, such as setting up environemnt variables containing credentials - see https://twine.readthedocs.io/en/latest/.
+
+Publish the wheel artefact:
+`pipenv run twine upload dist/* --non-interactive`
 
 ### Linting
 
@@ -83,7 +106,7 @@ To run linting tests:
 
 `pipenv run flake8`
 
-## Testing
+### Testing
 
 Use pytest for automated testing:
 
@@ -101,11 +124,23 @@ Add the following tooling to measure test coverage:
 
 The `pytest-cov` tool is governed by the following file `.coveragerc` file.
 
-## Pre-commit
+### Packaging
+
+The following command will package up the Python package so that it can be published:
+
+`pipenv run python setup.py sdist bdist_wheel`
+
+### Publishing
+
+The following command uses Twine to publish the package to the Azure Devops Artefacts repository so that it can be consumed by Python package installer `pip` or `pipenv`.
+
+`pipenv run twine upload dist/* --repository-url <Azure DevOps Artefect Repository URL>`
+
+### Pre-commit : not sure about this!
 
 See the configuration file `.pre-commit-config.yaml`.  This will run a bunch of tests and checks before allowing code to be committed.
 
-## Black : not sure about this!
+### Black : not sure about this!
 
-## isort : ditto not sure about this either!
+### isort : ditto not sure about this either!
 

@@ -1,11 +1,13 @@
-from project_name.sample_class import SampleClass
+from project_name.sample_module import SampleClass
 
-# Given
-a = 1
-b = 2
 
-# When
-result = SampleClass.sample_method(a, b)
+def test_simple_method():
+    # Given
+    a = 1
+    b = 2
 
-# Then
-assert result == 3
+    # When
+    result = SampleClass.sample_method(a, b)
+
+    # Then
+    assert result == 3
