@@ -7,16 +7,14 @@ name = "pypi"
 pandas = "*"
 
 [dev-packages]
-black = "==19.10b0"
 flake8 = "*"
 isort = "*"
-mypy = "*"
-pre-commit = "*"
 pytest = "*"
 pytest-cov = "*"
 pipenv-setup = "*"
 setuptools = "*"
 wheel = "*"
+pytest-bdd = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.9"
