@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 pandas = "*"
+behave-pandas = "*"
 
 [dev-packages]
 flake8 = "*"
@@ -14,7 +15,7 @@ pytest-cov = "*"
 pipenv-setup = "*"
 setuptools = "*"
 wheel = "*"
-pytest-bdd = "*"
+behave = "*"
 
 [requires]
 python_version = "3.9"
