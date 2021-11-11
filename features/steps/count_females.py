@@ -1,15 +1,13 @@
-from behave import *
-import pandas as pd
+from behave import given, when, then
+from pandas import DataFrame
+from project_name.utilities import BehaveHelper
 from project_name.dataframe_operations import DataframeOperations
 
 
 @given("My employee records are")
 def extract_employee_records(context):
-    list_of_records = []
-    for row in context.table:
-        list_of_records.append(dict(zip(row.headings, row.cells)))
-    context.employee_records = pd.DataFrame.from_records(list_of_records)
-
+    context.employee_records = BehaveHelper.table_to_dataframe(context.table)
+    assert isinstance(context.employee_records, DataFrame)
 
 @when("I count female employees")
 def get_count_of_females(context):
