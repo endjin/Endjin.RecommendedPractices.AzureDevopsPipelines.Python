@@ -9,7 +9,7 @@ Feature: Salary operations
             | Bob Smith  | Engineer        | 35000  |
             | Liz Brown  | Project Manager | 55000  |
             | Alex White | Analyst         | 42000  |
-        Given The "Salary" column is numeric
+        And The "Salary" column is numeric
 
         When I sum the salaries
 
