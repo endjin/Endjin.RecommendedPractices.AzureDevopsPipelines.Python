@@ -16,6 +16,7 @@ pipenv-setup = "*"
 setuptools = "*"
 wheel = "*"
 behave = "*"
+pandas = "*"
 
 [requires]
 python_version = "3.9"
