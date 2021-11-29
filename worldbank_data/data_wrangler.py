@@ -16,7 +16,7 @@ class DataWrangler:
 
     def load_raw_data_from_excel(self, filename):
         return pd.read_csv(
-            Path(self.input_folder_path, filename))
+            Path(self.input_folder_path, filename)).iloc[:-5]
 
     def unpivot_data(self, df):
 
