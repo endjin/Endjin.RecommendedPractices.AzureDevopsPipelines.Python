@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from pathlib import Path
 import csv
     
@@ -33,4 +34,12 @@ class DataWrangler:
 
     def clean_years(self, df):
         df['Year'] = df['Year'].str[:4]
+        return df
+
+    def assign_nan_empty_metrics(self, df):
+        df['Metric'] = df['Metric'].replace('..', np.nan)
+        return df
+
+    def fill_empty_cells(self, df):
+        df['Metric'] = df.groupby(['Country Name', 'Series Name'])['Metric'].ffill()
         return df
