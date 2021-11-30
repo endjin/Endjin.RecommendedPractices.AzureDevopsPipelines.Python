@@ -17,6 +17,6 @@ Feature: Preparing data
         Then we expect the resulting dataset to be
             | Country Name | Country Code | Series Name                                         | Series Code       | Year          | Metric  |
             | Albania      | ALB          | Life expectancy at birth, total (years)             | SP.DYN.LE00.IN    | 1960 [YR1960] | 62.283  |
-            | Albania      | ALB          | Current health expenditure per capita (current US$) | SH.XPD.CHEX.PC.CD | 1960 [YR1960] | nan     |
-            | Albania      | ALB          | GDP per capita (current US$)                        | NY.GDP.PCAP.CD    | 1960 [YR1960] | nan     |
+            | Albania      | ALB          | Current health expenditure per capita (current US$) | SH.XPD.CHEX.PC.CD | 1960 [YR1960] | NaN     |
+            | Albania      | ALB          | GDP per capita (current US$)                        | NY.GDP.PCAP.CD    | 1960 [YR1960] | NaN     |
             | Algeria      | DZA          | Population, female                                  | SP.POP.TOTL.FE.IN | 1960 [YR1960] | 5499822 |

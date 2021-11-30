@@ -1,16 +1,22 @@
 from behave.model import Table
 from pandas import DataFrame, to_datetime, to_numeric
+import numpy as np
 
 
 class BehaveHelper:
-    
-    @staticmethod
-    def table_to_dataframe(table: Table) -> DataFrame:
+
+    @classmethod
+    def table_to_dataframe(cls, table: Table) -> DataFrame:
 
         list_of_records = []
         for row in table:
             list_of_records.append(dict(zip(row.headings, row.cells)))
-        return DataFrame.from_records(list_of_records)
+        df = DataFrame.from_records(list_of_records)
+        return cls.parse_nan_strings(df)
+
+    @staticmethod
+    def parse_nan_strings(df: DataFrame) -> DataFrame:
+        return df.replace(to_replace='NaN', value=np.nan)
 
     # Used this super useful article:
     # https://stackoverflow.com/questions/15891038/change-column-type-in-pandas

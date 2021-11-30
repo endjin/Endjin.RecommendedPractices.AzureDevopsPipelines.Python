@@ -32,6 +32,6 @@ def compare_datasets(context):
     context.expected_result = BehaveHelper.table_to_dataframe(context.table)
     assert_frame_equal(context.result, context.expected_result, check_like=True, check_index_type=False)
 
-@then('the resulting dataset should have {column_count:d} columns')
-def check_column_count(context, column_count):
-    assert context.result.shape[1] == column_count
+@then('the resulting dataset should have {record_count:d} records')
+def check_record_count(context, record_count):
+    assert context.result.shape[0] == record_count
