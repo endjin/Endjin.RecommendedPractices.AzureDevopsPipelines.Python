@@ -1,3 +1,75 @@
+# Demo project READ.me
+
+### Pre-requisites
+
+- Git
+- Docker
+- VS Code
+
+### Install Git
+
+Download and install Git from [the official Git web site](https://git-scm.com/downloads).
+
+Check the installation of Git by running the following command:
+
+`git --version`
+
+There are some steps you need to take to [get started with Git](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)
+
+The core ones being setting your git user and email address, this is required for pushing changes to a remote repository:
+
+`git config --global user.name "John Doe"`
+`git config --global user.email johndoe@example.com`
+
+### Install Docker
+
+Download and install Docker from [the offical Docker web site](https://docs.docker.com/get-docker/)
+
+### Pull down repository from GitHub
+
+Clone the template project from GitHub. From a local directory where we you want to host your repos, such as `%HOMEPATH%\repos` run the following command:
+
+`git clone <URL path to the repository>`
+
+Change directory into root of the cloned repo. Open repo in VS Code by running the following command: 
+
+`code .`
+
+### Install remote containers
+
+If not already installed, install the "Remote - Containers" extension for VS Code.
+
+Choose SHIFT + CTRL + P.  Choose "Remote -Containers: Open Folder in Container...
+
+### Set up environment
+
+Use 'pip' (package installer for Python) to upgrade to the latest version of pip and pipenv:
+
+`python -m pip install --upgrade pip pipenv`
+
+Now lauch 'pipenv' shell - this will auotmatically create virtual environment:
+
+`pipenv shell`
+
+Now install dependencies using the `--dev` extensions so that development packages such as pytest, flake8 and the packaing tools are included.  This installs the packages defined in the Pipfile and Pipfile.lock files.
+
+`pipenv install --dev`
+
+The following commands are useful to visualise the packages that are installed and the dependencies between them:
+
+`pipenv graph`
+`pipend graph --reverse`
+
+### Choose the Python virtual environment
+
+Choose the Python virtual environment `Endjin.RecommendedPractices.AzureDevopsPip-8xT2-5Z7': venv` as the Python runtime environment.
+
+Ensure the python interactive notebook is running on the same virtual environment.
+
+
+
+
+
 # Endjin.RecommendedPractices.AzureDevopsPipelines.Python
 
 Repository to capture best practice tooling for Python based developments.

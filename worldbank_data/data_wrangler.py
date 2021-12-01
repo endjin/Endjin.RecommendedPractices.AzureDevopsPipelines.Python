@@ -54,3 +54,11 @@ class DataWrangler:
     def fill_empty_cells(self, df):
         df['Metric'] = df.groupby(['Country Name', 'Series Name'])['Metric'].ffill()
         return df
+
+    def data_to_log(self, df, columnname):
+        df[columnname] = np.log10(df[columnname])
+        return df
+
+    def convert_to_float(self, df, columnname):
+        df[columnname] = df[columnname].astype(float)
+        return df
