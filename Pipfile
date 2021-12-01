@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 pandas = "*"
 behave-pandas = "*"
+ipykernel = "*"
 
 [dev-packages]
 flake8 = "*"
