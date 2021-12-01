@@ -16,13 +16,13 @@ class DataWrangler:
 
     def load_mapping(self, mapping_file):
         mapping = self.load_raw_data_from_excel(mapping_file)
-        return mapping.loc[:, ['Continent Name', 'Continent Code', 'Country Code', 'Country Name']]
+        return mapping.loc[:, ['Code', 'Region']]
 
 
     def load_and_apply_mapping(self, df, filename):
         mapping = self.load_mapping(filename)
         # df = df.map(mapping)
-        df = df.merge(mapping, left_on = "Country Name", right_on = "Country Name")
+        df = df.merge(mapping, left_on = "Country Code", right_on = "Code")
         return df
 
 
