@@ -22,7 +22,7 @@ class DataWrangler:
     def load_and_apply_mapping(self, df, filename):
         mapping = self.load_mapping(filename)
         # df = df.map(mapping)
-        df = df.merge(mapping, left_on = "Country Code", right_on = "Code")
+        df = df.merge(mapping, left_on = "Country Code", right_on = "Code", how='left')
         return df
 
 
