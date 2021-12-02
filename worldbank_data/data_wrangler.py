@@ -43,6 +43,10 @@ class DataWrangler:
             value_name=value_name
         )
 
+    def pivot_data(self, df):
+        df = df.pivot(index=['Country Name', 'Country Code', 'Year'], columns='Series Name', values='Metric').reset_index()
+        return df
+
     def clean_years(self, df):
         df['Year'] = df['Year'].str[:4]
         return df

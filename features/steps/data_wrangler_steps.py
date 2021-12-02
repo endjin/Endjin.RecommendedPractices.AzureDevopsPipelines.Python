@@ -11,6 +11,10 @@ def initialise_data_wrangler(context):
 def extract_dataset(context):
     context.input_dataset = BehaveHelper.table_to_dataframe(context.table)
 
+@given("the data in the GDP per capita column is of type string")
+def get_column(context):
+    context.input_column = 'GDP per capita (current US$)'
+
 @when("we assign NaN values to cells containing '..'")
 def assign_NaN_values(context):
     context.result = context.data_wrangler.assign_nan_empty_metrics(context.input_dataset)
@@ -27,6 +31,14 @@ def years_format(context):
 def unpivot_data(context):
     context.result = context.data_wrangler.unpivot_data(context.input_dataset)
 
+@when("we pivot the data")
+def pivot_data(context):
+    context.result = context.data_wrangler.pivot_data(context.input_dataset)
+
+@when("we convert the data to a type of float")
+def string_to_float(context):
+    context.result = context.data_wrangler.convert_to_float(context.input_dataset, context.input_column)
+
 @then("we expect the resulting dataset to be")
 def compare_datasets(context):
     context.expected_result = BehaveHelper.table_to_dataframe(context.table)
@@ -35,3 +47,7 @@ def compare_datasets(context):
 @then('the resulting dataset should have {record_count:d} records')
 def check_record_count(context, record_count):
     assert context.result.shape[0] == record_count
+
+@then("the 'GDP per capita (current US$)' column is of type float")
+def check_type_float(context):
+    assert context.input_dataset[context.input_column].dtypes == float
