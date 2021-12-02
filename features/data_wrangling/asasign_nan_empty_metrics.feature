@@ -6,7 +6,7 @@ Feature: Preparing data
     Background:
         Given we are working on the downloaded World Bank dataset
 
-    Scenario: Assign NaN values to cells containg '..''
+    Scenario: Assign NaN values to cells containg '..' in a table with some empty metrics
         Given we have the following input dataset
             | Country Name | Country Code | Series Name                                         | Series Code       | Year          | Metric  |
             | Albania      | ALB          | Life expectancy at birth, total (years)             | SP.DYN.LE00.IN    | 1960 [YR1960] | 62.283  |
@@ -19,4 +19,34 @@ Feature: Preparing data
             | Albania      | ALB          | Life expectancy at birth, total (years)             | SP.DYN.LE00.IN    | 1960 [YR1960] | 62.283  |
             | Albania      | ALB          | Current health expenditure per capita (current US$) | SH.XPD.CHEX.PC.CD | 1960 [YR1960] | NaN     |
             | Albania      | ALB          | GDP per capita (current US$)                        | NY.GDP.PCAP.CD    | 1960 [YR1960] | NaN     |
+            | Algeria      | DZA          | Population, female                                  | SP.POP.TOTL.FE.IN | 1960 [YR1960] | 5499822 |
+
+    Scenario: Assign NaN values to cells containg '..' in a table with only empty metrics
+        Given we have the following input dataset
+            | Country Name | Country Code | Series Name                                         | Series Code       | Year          | Metric |
+            | Albania      | ALB          | Life expectancy at birth, total (years)             | SP.DYN.LE00.IN    | 1960 [YR1960] | ..     |
+            | Albania      | ALB          | Current health expenditure per capita (current US$) | SH.XPD.CHEX.PC.CD | 1960 [YR1960] | ..     |
+            | Albania      | ALB          | GDP per capita (current US$)                        | NY.GDP.PCAP.CD    | 1960 [YR1960] | ..     |
+            | Algeria      | DZA          | Population, female                                  | SP.POP.TOTL.FE.IN | 1960 [YR1960] | ..     |
+        When we assign NaN values to cells containing '..'
+        Then we expect the resulting dataset to be
+            | Country Name | Country Code | Series Name                                         | Series Code       | Year          | Metric |
+            | Albania      | ALB          | Life expectancy at birth, total (years)             | SP.DYN.LE00.IN    | 1960 [YR1960] | NaN    |
+            | Albania      | ALB          | Current health expenditure per capita (current US$) | SH.XPD.CHEX.PC.CD | 1960 [YR1960] | NaN    |
+            | Albania      | ALB          | GDP per capita (current US$)                        | NY.GDP.PCAP.CD    | 1960 [YR1960] | NaN    |
+            | Algeria      | DZA          | Population, female                                  | SP.POP.TOTL.FE.IN | 1960 [YR1960] | NaN    |
+
+    Scenario: Assign NaN values to cells containg '..' in a table with no empty metrics
+        Given we have the following input dataset
+            | Country Name | Country Code | Series Name                                         | Series Code       | Year          | Metric  |
+            | Albania      | ALB          | Life expectancy at birth, total (years)             | SP.DYN.LE00.IN    | 1960 [YR1960] | 62.283  |
+            | Albania      | ALB          | Current health expenditure per capita (current US$) | SH.XPD.CHEX.PC.CD | 1960 [YR1960] | 3000    |
+            | Albania      | ALB          | GDP per capita (current US$)                        | NY.GDP.PCAP.CD    | 1960 [YR1960] | 200     |
+            | Algeria      | DZA          | Population, female                                  | SP.POP.TOTL.FE.IN | 1960 [YR1960] | 5499822 |
+        When we assign NaN values to cells containing '..'
+        Then we expect the resulting dataset to be
+            | Country Name | Country Code | Series Name                                         | Series Code       | Year          | Metric  |
+            | Albania      | ALB          | Life expectancy at birth, total (years)             | SP.DYN.LE00.IN    | 1960 [YR1960] | 62.283  |
+            | Albania      | ALB          | Current health expenditure per capita (current US$) | SH.XPD.CHEX.PC.CD | 1960 [YR1960] | 3000    |
+            | Albania      | ALB          | GDP per capita (current US$)                        | NY.GDP.PCAP.CD    | 1960 [YR1960] | 200     |
             | Algeria      | DZA          | Population, female                                  | SP.POP.TOTL.FE.IN | 1960 [YR1960] | 5499822 |
