@@ -60,7 +60,11 @@ class DataWrangler:
         return df
 
     def data_to_log(self, df, columnname):
-        df[columnname] = np.log10(df[columnname])
+        #df[columnname] = np.log10(df[columnname])
+        # new_column = np.log10(df[columnname])
+        # df.assign(log10 = lambda x : np.log10(x.df[columnname]))
+        df = self.convert_to_float(df, columnname)
+        df.insert(2, "log10 GDP per capita (current US$)", np.log10(df[columnname]))
         return df
 
     def convert_to_float(self, df, columnname):

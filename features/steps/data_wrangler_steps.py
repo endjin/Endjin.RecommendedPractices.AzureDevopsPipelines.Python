@@ -39,6 +39,10 @@ def pivot_data(context):
 def string_to_float(context):
     context.result = context.data_wrangler.convert_to_float(context.input_dataset, context.input_column)
 
+@when("we compute the log10 of the data")
+def log10_data(context):
+    context.result = context.data_wrangler.data_to_log(context.input_dataset, 'GDP per capita (current US$)')
+
 @then("we expect the resulting dataset to be")
 def compare_datasets(context):
     context.expected_result = BehaveHelper.table_to_dataframe(context.table)
@@ -51,3 +55,10 @@ def check_record_count(context, record_count):
 @then("the 'GDP per capita (current US$)' column is of type float")
 def check_type_float(context):
     assert context.input_dataset[context.input_column].dtypes == float
+
+@then("the 'log10 GDP per capita (current US$)' is the log10 of the 'GDP per capita (current US$)'")
+def assert_log10(context):
+    log10_column = context.result['log10 GDP per capita (current US$)']
+    column = context.result['GDP per capita (current US$)']
+    for i in range(len(log10_column)):
+        assert round(10**(log10_column[i]),6) == round(column[i], 6)
